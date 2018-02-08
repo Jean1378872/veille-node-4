@@ -7,50 +7,17 @@ app.get('/html/02_formulaire.html', function (req, res) {
  res.sendFile( __dirname + "/" + "02_formulaire.html" );
 })
 
-app.get('/list', (req, res) => {
+/*app.get('/list', (req, res) => {
  fs.readFile( __dirname + "/public/data/" + "adresses.json", 'utf8', function (err, data) {
  console.log( data );
  res.end( data );
  });
-})
-
-fs.readFile(__dirname + "/public/data/" + "adresses.json", 'utf8', function (err, data) {
-	if (err) throw err
-
-	fs.writeFile(__dirname + "/public/data/" + "adresses.json", 'utf8', function (err) {
-		if (err) throw err
-		console.log('Done!')
-	})
-})
+})*/
 
 
-/////////////*///////
 
-/*fs.exists('adresses.json', function(exists){
-    if(exists){
-        console.log("yes file exists");
-        fs.readFile('adresses.json', function readFileCallback(err, data){
-        if (err){
-            console.log(err);
-        } else {
-        obj = JSON.parse(data); 
-        for (i=0; i<5 ; i++){
-        obj.table.push({id: i, square:i*i});
-        }
-        var json = JSON.stringify(obj); 
-        fs.writeFile('adresses.json', json); 
-        }});
-    } else {
-        console.log("file not exists")
-        for (i=0; i<5 ; i++){
-        obj.table.push({id: i, square:i*i});
-        }
-        var json = JSON.stringify(obj);
-        fs.writeFile('adresses.json', json);
-        }
-    });*/
 
-    //////*//////
+
 
 app.get('/', (req, res) => {
  console.log('accueil')
@@ -71,7 +38,17 @@ console.log('la route /traiter_get')
  };
 
 
-res.write('<p>'+JSON.stringify(reponse)+'</p>')
+fs.readFile(__dirname + "/public/data/" + "adresses.json", 'utf8', function (err, data) {
+	if (err) throw err
+		console.log( data );
+	fs.writeFile(__dirname + "/public/data/" + "adresses.json", JSON.stringify(reponse), function (err) {
+
+    var json = JSON.stringify(reponse);
+    fs.writeFile('adresses.json', json);
+
+		console.log('Done!')
+	})
+})
 
 console.log(reponse);
  res.end(JSON.stringify(reponse));
