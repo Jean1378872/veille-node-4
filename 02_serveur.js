@@ -76,17 +76,37 @@ fs.readFile(__dirname + "/public/data/" + "adresses.json", 'utf8', function (err
 	let collection = JSON.parse('[' + data + ']');
 	
 
-	const transforme_en_tableau = (o) =>{
+	/*const transforme_en_tableau = (o) =>{
 
 	let trace = '<table style="border:6px solid #2f4591;">' + '<CAPTION>Exercice 4 - Tableau des Membres</CAPTION>'
- + '<tr style="border:2px solid black;">' + '<th>' + '<td">PRENOMS</td>'+ '</th>' + '<th>' + '<td>NOMS</td>'+ '</th>' + '<th>' + '<td>TELEPHONE</td>' + '</th>' + '<th>' + '<td>MAIL</td>' + '</th>' + '</tr>';
+ 	+ '<tr style="border:2px solid black;">' + '<th>' + '<td">PRENOMS</td>'+ '</th>' + '<th>' + '<td>NOMS</td>'+ '</th>' + '<th>' + '<td>TELEPHONE</td>' + '</th>' + '<th>' + '<td>MAIL</td>' + '</th>' + '</tr>';
 
    for (let i=0; i<collection.length; i++) { 
      trace += '<tr>' + '<th>' + '<td">' + collection[i].prenom + '</td>' + '</th>' + '<th>' + '<td>' + collection[i].nom + '</td>' + '</th>' + '<th>' + '<td>' + collection[i].tel + '</td>' + '</th>' + '<th>' + '<td>' + collection[i].mail + '</td>' + '</th>' + '<th>' + '<br></br>'; 
      
    } 
    return trace + '</table>';
+	}*/
+	const transforme_en_tableau = (collection) =>{
+
+	let chaine = '<table style="border:6px solid #2f4591;">';
+
+	for(elm of collection){
+
+		chaine += '<tr>';
+
+  	for (p in elm) { 
+     chaine += '<td>' + elm[p] + '</td>'; 
+
+   	} 
+   		chaine += '</tr>';
+   }
+
+   chaine += '</table>';
+
+   return chaine;
 	}
+
 
 	res.end(transforme_en_tableau(collection));
 
