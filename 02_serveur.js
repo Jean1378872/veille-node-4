@@ -78,7 +78,7 @@ fs.readFile(__dirname + "/public/data/" + "adresses.json", 'utf8', function (err
 
 	const transforme_en_tableau = (o) =>{
 
-	let trace = '<table style="border:2px solid black;">' + '<tr style="border:2px solid black;">' + '<th>' + '<td">' + 'PRENOMS' + '</td>'+ '<th>' + '<td style="border:2px solid black;">' + 'NOMS' + '</td>'+ '<th>' + '<td style="border:2px solid black;">' + 'TELEPHONE' + '</td>' + '<th>' + '<td style="border:2px solid black;">' + 'MAIL' + '</td>';
+	let trace = '<table style="border:6px solid #676767;">' + '<tr style="border:2px solid black;">' + '<th>' + '<td">' + 'PRENOMS' + '</td>'+ '<th>' + '<td style="border:2px solid black;">' + 'NOMS' + '</td>'+ '<th>' + '<td style="border:2px solid black;">' + 'TELEPHONE' + '</td>' + '<th>' + '<td style="border:2px solid black;">' + 'MAIL' + '</td>';
 
    for (let i=0; i<collection.length; i++) { 
      trace += '<tr>' + '<th>' + '<td">' + collection[i].prenom + '</td>' + '</th>' + '<th>' + '<td>' + collection[i].nom + '</td>' + '</th>' + '<th>' + '<td>' + collection[i].tel + '</td>' + '</th>' + '<th>' + '<td>' + collection[i].mail + '</td>' + '</th>' + '<th>' + '<br></br>'; 
