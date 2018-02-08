@@ -89,14 +89,14 @@ fs.readFile(__dirname + "/public/data/" + "adresses.json", 'utf8', function (err
 	}*/
 	const transforme_en_tableau = (collection) =>{
 
-	let chaine = '<table style="border:6px solid #2f4591;">';
+	let chaine = '<table style="border:4px solid #2f4591;background-color:#4f6ab3;color:white;height:400px;width:600px;">' + '<CAPTION>Exercice 4 - Tableau des Membres</CAPTION>';
 
 	for(elm of collection){
 
 		chaine += '<tr>';
 
   	for (p in elm) { 
-     chaine += '<td>' + elm[p] + '</td>'; 
+     chaine += '<td style="border:1px solid #2f4591;">' + elm[p] + '</td>'; 
 
    	} 
    		chaine += '</tr>';
