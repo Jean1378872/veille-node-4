@@ -37,22 +37,63 @@ console.log('la route /traiter_get')
  mail:req.query.mail
  };
 
-
-fs.readFile(__dirname + "/public/data/" + "adresses.json", 'utf8', function (err, data) {
-	if (err) throw err
-		console.log( data );
-	fs.writeFile(__dirname + "/public/data/" + "adresses.json", JSON.stringify(reponse), function (err) {
+fs.appendFile(__dirname + "/public/data/" + "adresses.json", ',' + JSON.stringify(reponse), function (err, data) {
 
     var json = JSON.stringify(reponse);
-    fs.writeFile('adresses.json', json);
+    fs.appendFile("adresses.json", json);
 
 		console.log('Done!')
 	})
-})
+
 
 console.log(reponse);
  res.end(JSON.stringify(reponse));
+
 })
+
+/*const contenu_objet_json = (o) => {
+   let trace = '';
+   for (let p in o) { 
+     trace += p + ': ' + o[p] + '\n' + '<br></br>'; 
+     console.log(trace);
+   } 
+   return trace;
+   }*/
+
+
+app.get('/membres', (req, res) => {
+
+
+
+fs.readFile(__dirname + "/public/data/" + "adresses.json", 'utf8', function (err, data) {
+	
+
+	if (err) throw err
+
+	
+
+
+	let collection = JSON.parse('[' + data + ']');
+	
+
+	const transforme_en_tableau = (o) =>{
+	
+	let trace = '<table style="border:2px solid black;">';
+
+   for (let i=0; i<collection.length; i++) { 
+     trace += '<tr>' + '<th  style="border:2px solid black;">' + '<td>' + collection[i].prenom + '</td>' + '</th>' + '<th>' + '<td>' + collection[i].nom + '</td>' + '</th>' + '<th>' + '<td>' + collection[i].tel + '</td>' + '</th>' + '<th>' + '<td>' + collection[i].mail + '</td>' + '</th>' + '<th>' + '<br></br>'; 
+     
+   } 
+   return trace + '</table>';
+	}
+
+	res.end(transforme_en_tableau(collection));
+
+	
+})
+})
+
+
 
 
 
